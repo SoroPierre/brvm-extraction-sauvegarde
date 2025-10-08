@@ -29,7 +29,7 @@ jobs:
           git config --global user.email 'github-actions@github.com'
           git add brvm-data/*.csv
           git commit -m "Update CSV data from extraction workflow" || echo "No changes to commit"
-          git push
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:main
         env:
           # Use the default GITHUB_TOKEN for authentication
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
