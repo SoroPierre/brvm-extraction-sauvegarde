@@ -1,1 +1,26 @@
+name: Extraction BRVM quotidienne
 
+on:
+  schedule:
+    - cron: '22 18 * * 1-5'  # 17h22 heure de Paris = 15h22 UTC, du lundi au vendredi
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du dépôt
+        uses: actions/checkout@v3
+
+      - name: Configuration de Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Installation des dépendances
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Exécution du script
+        run: |
+          python scripts/python/brvm-extract-save.py
