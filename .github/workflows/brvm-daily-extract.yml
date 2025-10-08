@@ -23,6 +23,17 @@ jobs:
       - name: Run extraction script
         run: python brvm-extract-save.py
 
+      - name: Commit and push CSV file
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add brvm-data/*.csv
+          git commit -m "Update CSV data from extraction workflow" || echo "No changes to commit"
+          git push
+        env:
+          # Use the default GITHUB_TOKEN for authentication
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload CSV file as artifact
         uses: actions/upload-artifact@v4
         with:
