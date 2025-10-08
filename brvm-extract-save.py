@@ -7,7 +7,7 @@ from os import path, makedirs
 # URL de la page BRVM
 url = "https://www.brvm.org/fr/cours-actions/0"
 # Use runner workspace for storage in GitHub Actions
-path_folder_storage = "Historiques"
+path_folder_storage = "brvm-data"
 
 ''' Permet de récupérer les cours d'ouverture et clôture de brvm '''
 
