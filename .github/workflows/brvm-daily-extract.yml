@@ -2,7 +2,7 @@ name: Extraction Data BRVM
 
 on:
   schedule:
-    - cron: '22 18 * * 1-5' # Runs at 18:22 UTC, Monday to Friday
+    - cron: '15 16 * * 1-5' # Runs at 18:22 UTC, Monday to Friday
   workflow_dispatch:
 
 jobs:
