@@ -22,13 +22,14 @@ cotation_data = []
 for row in rows[1:]:
     columns = row.find_all('td')
     if len(columns) > 1:
+        cotation_date = datetime.now()
         ticker = columns[0].text.strip()
         nom_valeur = columns[1].text.strip()
         volume_transaction = columns[2].text.strip()
         open_cours = columns[4].text.strip()
         close_cours = columns[5].text.strip()
         variation = columns[6].text.strip()
-        cotation_data.append((ticker, nom_valeur, volume_transaction, open_cours, close_cours, variation))
+        cotation_data.append((cotation_date, ticker, nom_valeur, volume_transaction, open_cours, close_cours, variation))
 
 # Sauvegarder dans un fichier CSV
 if not path.exists(path_folder_storage):
@@ -39,5 +40,5 @@ filename = path.join(path_folder_storage, filename)
 
 with open(filename, "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
-    writer.writerow(["Symbole", "Nom", "Volume", "Cours ouverture", "Cours Cloture", "Variation"])
+    writer.writerow(["Date", "Symbole", "Nom", "Volume", "Cours ouverture", "Cours Cloture", "Variation"])
     writer.writerows(cotation_data)
